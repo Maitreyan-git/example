@@ -1,0 +1,20 @@
+import json
+
+with open('Input.json', 'r') as file:
+    input_data = json.load(file)
+stacks = input_data["stacks"]
+heights = [sum(stack) for stack in stacks]
+while not (heights[0] == heights[1] == heights[2]):
+    max_index = heights.index(max(heights))  
+    heights[max_index] -= stacks[max_index].pop(0)
+
+output_data = {
+    "max_equal_height": heights[0]  # All stacks now have the same height
+}
+
+# Write the output to Output.json
+with open('Output.json', 'w') as file:
+    json.dump(output_data, file, indent=4)
+
+# Print a confirmation message
+print("Processed successfully. Check Output.json for the results.")
