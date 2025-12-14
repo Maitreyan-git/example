@@ -1,0 +1,317 @@
+Understood 👍
+Below is a **clean, working, workshop-ready Python collection of core DSA problems**, written in **simple Python**, with **no unnecessary complexity**.
+
+These are the **exact DSA topics interviewers + workshops expect**.
+Each problem includes **working code** (you can copy-paste and run).
+
+---
+
+# 🔹 1. ARRAYS
+
+## ✅ Find Maximum Element
+
+```python
+def find_max(arr):
+    max_val = arr[0]
+    for x in arr:
+        if x > max_val:
+            max_val = x
+    return max_val
+
+print(find_max([3, 7, 1, 9, 4]))  # 9
+```
+
+---
+
+## ✅ Reverse an Array
+
+```python
+def reverse_array(arr):
+    left = 0
+    right = len(arr) - 1
+    while left < right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+    return arr
+
+print(reverse_array([1, 2, 3, 4]))
+```
+
+---
+
+# 🔹 2. STRINGS
+
+## ✅ Check Palindrome
+
+```python
+def is_palindrome(s):
+    left = 0
+    right = len(s) - 1
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+print(is_palindrome("madam"))  # True
+```
+
+---
+
+# 🔹 3. STACK (Using List)
+
+## ✅ Stack Operations
+
+```python
+stack = []
+
+stack.append(10)   # push
+stack.append(20)
+stack.append(30)
+
+print(stack.pop()) # pop
+print(stack)
+```
+
+---
+
+## ✅ Valid Parentheses
+
+```python
+def is_valid_parentheses(s):
+    stack = []
+    for ch in s:
+        if ch in "({[":
+            stack.append(ch)
+        else:
+            if not stack:
+                return False
+            top = stack.pop()
+            if (top == '(' and ch != ')') or \
+               (top == '{' and ch != '}') or \
+               (top == '[' and ch != ']'):
+                return False
+    return len(stack) == 0
+
+print(is_valid_parentheses("({[]})"))  # True
+```
+
+---
+
+# 🔹 4. QUEUE (Using List)
+
+```python
+queue = []
+
+queue.append(1)     # enqueue
+queue.append(2)
+queue.append(3)
+
+print(queue.pop(0)) # dequeue
+print(queue)
+```
+
+---
+
+# 🔹 5. LINKED LIST
+
+## ✅ Singly Linked List
+
+```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+def print_list(head):
+    while head:
+        print(head.data, end=" -> ")
+        head = head.next
+    print("None")
+
+head = Node(1)
+head.next = Node(2)
+head.next.next = Node(3)
+
+print_list(head)
+```
+
+---
+
+# 🔹 6. SEARCHING
+
+## ✅ Linear Search
+
+```python
+def linear_search(arr, key):
+    for i in range(len(arr)):
+        if arr[i] == key:
+            return i
+    return -1
+
+print(linear_search([4, 2, 7, 1], 7))
+```
+
+---
+
+## ✅ Binary Search (Sorted Array)
+
+```python
+def binary_search(arr, key):
+    left = 0
+    right = len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
+print(binary_search([1, 3, 5, 7, 9], 7))
+```
+
+---
+
+# 🔹 7. SORTING
+
+## ✅ Bubble Sort
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+print(bubble_sort([5, 1, 4, 2, 8]))
+```
+
+---
+
+## ✅ Selection Sort
+
+```python
+def selection_sort(arr):
+    for i in range(len(arr)):
+        min_idx = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+
+print(selection_sort([64, 25, 12, 22, 11]))
+```
+
+---
+
+# 🔹 8. HASHING (Dictionary)
+
+## ✅ Frequency Count
+
+```python
+def frequency(arr):
+    freq = {}
+    for x in arr:
+        if x in freq:
+            freq[x] += 1
+        else:
+            freq[x] = 1
+    return freq
+
+print(frequency([1, 2, 2, 3, 1, 1]))
+```
+
+---
+
+# 🔹 9. TREE
+
+## ✅ Binary Tree Traversals
+
+```python
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val, end=" ")
+        inorder(root.right)
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+
+inorder(root)
+```
+
+---
+
+# 🔹 10. GRAPH
+
+## ✅ DFS (Depth First Search)
+
+```python
+def dfs(graph, start, visited):
+    visited.append(start)
+    print(start, end=" ")
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D'],
+    'C': [],
+    'D': []
+}
+
+dfs(graph, 'A', [])
+```
+
+---
+
+## ✅ BFS (Breadth First Search)
+
+```python
+def bfs(graph, start):
+    visited = []
+    queue = [start]
+
+    while queue:
+        node = queue.pop(0)
+        if node not in visited:
+            print(node, end=" ")
+            visited.append(node)
+            for neighbor in graph[node]:
+                queue.append(neighbor)
+
+bfs(graph, 'A')
+```
+
+---
+
+# 🔹 11. HEAP (Priority Queue)
+
+## ✅ Find K Largest Elements
+
+```python
+def k_largest(arr, k):
+    arr.sort(reverse=True)
+    return arr[:k]
+
+print(k_largest([3, 1, 5, 12, 2, 11], 3))
+```
+
+
+
